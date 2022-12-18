@@ -119,7 +119,9 @@ function colissimo($livraison)
 
 <?php }
 
-
+?>
+<script src="https://widget.mondialrelay.com/parcelshop-picker/jquery.plugin.mondialrelay.parcelshoppicker.min.js"></script>
+<?php
 function mondial_relay($livraison)
 { ?>
 
@@ -148,6 +150,8 @@ $variable = strtoupper($livraison['MRnom_enseigne']);
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+
 <script src="https://widget.mondialrelay.com/parcelshop-picker/jquery.plugin.mondialrelay.parcelshoppicker.min.js"></script>
 
 <script>

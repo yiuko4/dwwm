@@ -1,51 +1,61 @@
-<div class="text-center mb-4">
-    <h2>Information personelle</h2>
-</div>
+<div class="container">
 
-<!-- INFORMATION PERSONELLE -->
-<b> Nom Prénom : </b> <?= $utilisateur[0]['nom'], " ", $utilisateur[0]['prenom'] ?><br>
-<b> Téléphone : </b> 0<?= $utilisateur[0]['telephone'] ?>
+    <div class="text-center mb-4">
+        <h2>Information personelle</h2>
+    </div>
 
-<form method="POST" action="<?= URL ?>compte/profil">
-    <input type="submit" value="Modifier">
-</form>
+    <!-- INFORMATION PERSONELLE -->
+    <b> Nom Prénom : </b> <?= $utilisateur[0]['nom'], " ", $utilisateur[0]['prenom'] ?><br>
+    <b> Téléphone : </b> 0<?= $utilisateur[0]['telephone'] ?>
 
-<!-- LIVRAISON -->
-<div class="text-center ">
-    <h2>Mode de livraison</h2>
-</div>
+    <form method="POST" action="<?= URL ?>compte/profil">
+        <input type="submit" class="btn btn-primary" value="Modifier">
+    </form>
 
-<form>
-    <label for="colissimo">Colissimo</label>
-    <input type="checkbox" id="colissimo" name="modeLivraison" value="1" onclick="if(this.checked){checkColissimo()}" <?= ($utilisateur[0]['Cdefaut'] == 1) ? "checked disabled" : ""; ?>>
+    <!-- LIVRAISON -->
+    <div class="text-center ">
+        <h2>Mode de livraison</h2>
+    </div>
 
-    <label for="mondial_relay">Mondial Relay</label>
-    <input type="checkbox" id="mondial_relay" name="modeLivraison" value="2" onclick="if(this.checked){CheckMondial_relay()}" <?= ($utilisateur[0]['MRdefaut'] == 1) ? "checked disabled" : ""; ?>>
+    <form>
+        <label for="colissimo">Colissimo</label>
+        <input type="checkbox" id="colissimo" name="modeLivraison" value="1" onclick="if(this.checked){checkColissimo()}" <?= ($utilisateur[0]['Cdefaut'] == 1) ? "checked disabled" : ""; ?>>
 
-</form>
+        <label for="mondial_relay">Mondial Relay</label>
+        <input type="checkbox" id="mondial_relay" name="modeLivraison" value="2" onclick="if(this.checked){CheckMondial_relay()}" <?= ($utilisateur[0]['MRdefaut'] == 1) ? "checked disabled" : ""; ?>>
 
-<div id="textColissimo" <?= ($utilisateur[0]['Cdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php colissimo($utilisateur); ?></div>
-<div id="textMondial_relay" <?= ($utilisateur[0]['MRdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php mondial_relay($utilisateur); ?></div>
+    </form>
 
-
-<form method="POST" action="<?= URL ?>compte/livraison">
-
-    <input type="submit" value="Modifier">
-</form>
-
-<!-- LIVRAISON -->
-<?php panier($panier); ?>
+    <div id="textColissimo" <?= ($utilisateur[0]['Cdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php colissimo($utilisateur); ?></div>
+    <div id="textMondial_relay" <?= ($utilisateur[0]['MRdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php mondial_relay($utilisateur); ?></div>
 
 
+    <form method="POST" action="<?= URL ?>compte/livraison">
 
-<!-- VALIDER LA COMMANDE -->
-<div class="text-center">
-    <!-- si livraisonValue = 1 alors c'est un colissimo, si 2 c'est un mondial relay -->
-    <input type="hidden" id="livraisonValue" name="livraisonValue">
-    <input type="hidden" value="" name="">
-    <!--     <button onclick="recupValeurs()" > Passer la commande et payer </button>
+        <input type="submit" class="btn btn-primary" value="Modifier">
+    </form>
+
+    <!-- LIVRAISON -->
+    <?php panier($panier); ?>
+
+
+
+    <!-- VALIDER LA COMMANDE -->
+    <div class="text-center">
+        <!-- si livraisonValue = 1 alors c'est un colissimo, si 2 c'est un mondial relay -->
+        <input type="hidden" id="livraisonValue" name="livraisonValue">
+        <input type="hidden" value="" name="">
+        <!--     <button onclick="recupValeurs()" > Passer la commande et payer </button>
  -->
+    </div>
+
 </div>
+
+
+
+
+
+
 <?php
 
 /* FUNCTION */
@@ -120,7 +130,7 @@ function panier($panier)
     </table>
 
     <form action="./checkout-session" method="POST">
-        <button type="submit" id="checkout-button">Checkout</button>
+        <button type="submit" class="btn btn-primary" id="checkout-button">Checkout</button>
     </form>
 
 <?php }

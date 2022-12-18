@@ -5,6 +5,7 @@ require_once("./controllers/Securite.class.php");
 
 class VisiteurController extends MainController{
     private $visiteurManager;
+    private $boutiqueManager;
 
     public function __construct(){
         $this->visiteurManager = new VisiteurManager();

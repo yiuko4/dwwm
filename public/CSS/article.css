@@ -1,0 +1,143 @@
+/* MEDIA REPSONSIIVE */
+/* bureau */
+@media screen and (min-width: 768px) {
+    #nom {
+        text-align: left;
+
+    }
+
+    #btnPanier {
+        text-align: left;
+        margin-top: -50px;
+        margin-left: -70px;
+    }
+}
+
+/* tablette */
+@media screen and (min-width: 576px) and (max-width: 768px) {}
+
+/* tel */
+@media screen and (max-width: 576px) {
+
+    #nom {
+        margin-top: -40px;
+    }
+
+    #btnPanier {
+        text-align: left;
+        margin-top: -50px;
+        margin-left: 25px;
+    }
+
+    #container {
+
+        text-align: center;
+    }
+
+    #formulaire {
+        margin-top: -25px;
+        margin-left: 50px;
+    }
+
+    #affichePrix {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 2em;
+        width: 120px;
+    }
+
+    #ancienPrix {
+        text-decoration: line-through;
+        margin-left: -20px;
+        margin-right: 50px;
+
+    }
+
+    #baseprix {
+        margin-left: 20px;
+        margin-top: -10px;
+
+    }
+
+
+}
+
+#button {
+    background-color: #2274A5 !important;
+    color: white;
+}
+
+#retour {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+
+#boutontaille {
+    border: none;
+    background-color: white;
+
+}
+
+#boutontaille:hover {
+    font-weight: 500;
+    color: #816C61;
+}
+
+#boutoncouleur {
+    display: inline-block;
+    border: none;
+    margin: 2px;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#boutoncouleur:hover {
+    width: 35px;
+    height: 35px;
+}
+
+#article {
+    margin: 5px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    height: 60px;
+}
+
+
+#ancienPrix {
+    text-decoration: line-through;
+
+}
+
+#image {
+    height: 400px;
+    display: block;
+    margin: 0px auto;
+}
+
+h1 {
+    padding-top: 50px;
+    text-transform: uppercase;
+    color: #816c61!important;
+}
+
+.row {
+    padding-top: 20px;
+}
+
+.btn {
+    margin-top: 100px;
+    margin-left: 70px;
+}
+
+.taille {
+    text-decoration: none;
+}
+
+.couleur {
+    text-decoration: none;
+}

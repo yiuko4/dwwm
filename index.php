@@ -257,11 +257,23 @@ try {
                         $articleID = Securite::secureHTML($_POST['articleID']);
                         $administrateurController->modifArticle($articleID);
                         break;
+                    case "validation_modifier_un_article":
+                        $articleID = Securite::secureHTML($_POST['id']);
+                        $nom = Securite::secureHTML($_POST['nom']);
+                        $prix = Securite::secureHTML($_POST['prix']);
+                        $promotion = Securite::secureHTML($_POST['promotion']);
+                        $idCategorie = Securite::secureHTML($_POST['idCategorie']);
+                        $idCouleur = Securite::secureHTML($_POST['idCouleur']);
+                        $idTaille = Securite::secureHTML($_POST['idTaille']);
+                        $administrateurController->validationModifArticle($articleID, $nom, $prix, $promotion, $idCategorie, $idCouleur, $idTaille);
+                        break;
                     case "cacher_un_article":
-                        $administrateurController->hideArticle();
+                        $id = Securite::secureHTML($_POST['id']);
+                        $administrateurController->hideArticle($id);
                         break;
                     case "supprimer_un_article":
-                        $administrateurController->deleteArticle();
+                        $id = Securite::secureHTML($_POST['id']);
+                        $administrateurController->deleteArticle($id);
                         break;
                     default:
                         throw new Exception("La page n'existe pas");

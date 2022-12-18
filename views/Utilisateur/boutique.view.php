@@ -125,7 +125,7 @@
                     <select class="form-select" name="couleur" onchange="submit()">
                         <option value="0"> Couleur </option>
                         <?php foreach ($filtreCouleur as $filtre) { ?>
-                            <option value="<?= $filtre['id'] ?>" <?= $filtre['id'] == $_SESSION['filtre']["couleur"] ? "selected" : "" ?>> <?= $filtre['nom'] ?> </option>
+                            <option id="option-boutoncvalue" value="<?= $filtre['id'] ?>" <?= $filtre['id'] == $_SESSION['filtre']["couleur"] ? "selected" : "" ?>> <?= $filtre['nom'] ?> </option>
                         <?php } ?>
                     </select>
                 </form>
@@ -135,7 +135,7 @@
             <div class="col-12 text-center" id="annuler">
 
                 <form method="POST" action="<?= URL ?>boutique/filtreCancel">
-                    <button type="submit" class="btn btn-info">Annuler les filtres</button>
+                    <button type="submit" id="button" class="btn">Annuler les filtres</button>
                 </form>
             </div>
 

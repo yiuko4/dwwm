@@ -11,7 +11,7 @@ class AdministrateurController extends MainController
         $this->administrateurManager = new AdministrateurManager();
     }
 
-    public function ajoutArticle()
+    public function ajoutArticle() /**/
     {
         $data_page = [
             "page_description" => "Page d'ajout article",
@@ -23,11 +23,6 @@ class AdministrateurController extends MainController
         $this->genererPage($data_page);
     }
 
-    /*public function validationAjoutImage($file)
-    {
-        $repertoire = "public/Assets/images/article/";
-        Toolbox::ajoutImage($file, $repertoire);
-    } */
 
     public function validationAjoutArticle($nom, $prix, $promotion, $idCategorie, $idCouleur, $idTaille, $file)
     {
@@ -36,10 +31,18 @@ class AdministrateurController extends MainController
         $nomImage = Toolbox::ajoutImage($file, $repertoire);
         /* $nomImage = "test"; */
         $this->administrateurManager->infoAjoutArticle($nom, $nomImage, $prix, $promotion, $idCategorie, $idCouleur, $idTaille);
-
         header("Location: " . URL . "administration/articles");
-
     }
+
+     public function validationModifArticle($articleID, $nom, $prix, $promotion, $idCategorie, $idCouleur, $idTaille)
+    {
+        if ($this->administrateurManager->infoModifArticle($articleID, $nom, $prix, $promotion, $idCategorie, $idCouleur, $idTaille)) {
+            Toolbox::ajouterMessageAlerte("marche", Toolbox::COULEUR_VERTE);
+        } else {
+            Toolbox::ajouterMessageAlerte("marche pas", Toolbox::COULEUR_ROUGE);
+        }
+        header("Location: " . URL . "administration/articles");
+    } 
 
 
 
@@ -78,22 +81,25 @@ class AdministrateurController extends MainController
 
 
 
-    public function hideArticle()
+    public function hideArticle($id)
     {
-        if ($this->administrateurManager->hideArticle()) {
-            Toolbox::ajouterMessageAlerte("L'article a été modifié", Toolbox::COULEUR_VERTE);
+        if ($this->administrateurManager->unHideArticle($id)) {
+            Toolbox::ajouterMessageAlerte("L'article a été affiché", Toolbox::COULEUR_VERTE);
+        } elseif ($this->administrateurManager->hideArticle($id)) {
+            Toolbox::ajouterMessageAlerte("L'article a été caché", Toolbox::COULEUR_VERTE);
         } else {
-            Toolbox::ajouterMessageAlerte("L'article n'a pas été modifié", Toolbox::COULEUR_ROUGE);
+            Toolbox::ajouterMessageAlerte("L'article n'a pas été caché", Toolbox::COULEUR_ROUGE);
         }
+
         header("Location: " . URL . "administration/articles");
     }
 
-    public function deleteArticle()
+    public function deleteArticle($id)
     {
-        if ($this->administrateurManager->deleteArticle()) {
-            Toolbox::ajouterMessageAlerte("L'article a été modifié", Toolbox::COULEUR_VERTE);
+        if ($this->administrateurManager->deleteArticle($id)) {
+            Toolbox::ajouterMessageAlerte("L'article a été supprimé", Toolbox::COULEUR_VERTE);
         } else {
-            Toolbox::ajouterMessageAlerte("L'article n'a pas été modifié", Toolbox::COULEUR_ROUGE);
+            Toolbox::ajouterMessageAlerte("L'article n'a pas été supprimé", Toolbox::COULEUR_ROUGE);
         }
         header("Location: " . URL . "administration/articles");
     }

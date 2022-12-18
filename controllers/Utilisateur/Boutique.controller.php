@@ -14,38 +14,37 @@ class BoutiqueController extends MainController
     /* Affiche page accueil */
     public function boutique()
     {
-        $ftaille = $_SESSION['filtre']["taille"]; 
+        $ftaille = $_SESSION['filtre']["taille"];
         $fcouleur = $_SESSION['filtre']["couleur"];
         $fcategorie = $_SESSION['filtre']["categorie"];
 
-        if ($ftaille != 0 && $fcouleur != 0 && $fcategorie != 0)/* taille couleur categorie */ {
+        if ($ftaille != 0 && $fcouleur != 0 && $fcategorie != 0) {
             $article = $this->boutiqueManager->getAticlesTailleCouleurCategorie($ftaille, $fcouleur, $fcategorie);
-        } elseif ($ftaille != 0 && $fcouleur != 0) /* taille couleur */ {
+        } elseif ($ftaille != 0 && $fcouleur != 0) {
             $article = $this->boutiqueManager->getAticlesTailleCouleur($ftaille, $fcouleur);
         } elseif ($ftaille != 0 && $fcategorie != 0) {
             $article = $this->boutiqueManager->getAticlesTailleCategorie($ftaille, $fcategorie);
         } elseif ($fcouleur != 0 && $fcategorie != 0) {
             $article = $this->boutiqueManager->getAticlesCouleurCategorie($fcouleur, $fcategorie);
-        } elseif ($ftaille != 0) /* taille */ {
+        } elseif ($ftaille != 0) {
             $article = $this->boutiqueManager->getAticlesTaille($ftaille);
-        } elseif ($fcouleur != 0) /* couleur */ {
+        } elseif ($fcouleur != 0) {
             $article = $this->boutiqueManager->getAticlesCouleur($fcouleur);
         } elseif ($fcategorie != 0) {
             $article = $this->boutiqueManager->getAticlesCategorie($fcategorie);
-        } else
+        } 
+
+        else
             $article = $this->boutiqueManager->getAticles();
 
         $tailleArray = array();
         $couleurArray = array();
 
         if (!empty($article)) {
-            /* affiche les tailles associées à l'article */
             $tailleArray = $this->taille($article);
-            /* affiche les couleurs associées à l'article */
             $couleurArray = $this->couleur($article);
         }
-        
-        /* affiche toutes les tailles */
+
         $filtreTaille = $this->boutiqueManager->allTaille();
         $filtreCouleur = $this->boutiqueManager->allCouleur();
         $filtreCategorie = $this->boutiqueManager->allCategorie();
@@ -99,6 +98,7 @@ class BoutiqueController extends MainController
             "article" => $article,
             "taille" => $taille,
             "couleur" => $couleur,
+            "page_css" => ['article.css'],
             "view" => "views/Utilisateur/article.view.php",
             "template" => "views/common/template.php"
         ];
@@ -109,6 +109,7 @@ class BoutiqueController extends MainController
     public function addArticleToPanier($articleID, $panierID)
     {
         if (!$this->boutiqueManager->isPanier($articleID, $panierID)) {
+
             $this->boutiqueManager->addArticleToPanier($articleID, $_SESSION['profil']["panier"]);
             Toolbox::ajouterMessageAlerte("L'article a été ajouter au panier", Toolbox::COULEUR_VERTE);
         } else {
@@ -125,6 +126,7 @@ class BoutiqueController extends MainController
             "page_description" => "Page du panier",
             "page_title" => "Page du panier",
             "panier" => $panier,
+            "page_css" => ['panier.css'],
             "view" => "views/Utilisateur/panier.view.php",
             "template" => "views/common/template.php"
         ];
@@ -183,7 +185,7 @@ class BoutiqueController extends MainController
         $this->genererPage($data_page);
     }
 
-    
+
 
 
 

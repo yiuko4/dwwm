@@ -1,3 +1,13 @@
-.p_invisible{
-    display:none;
+.p_invisible {
+    display: none;
+}
+
+#button {
+    background-color: #e4d6bd !important;
+}
+
+body{
+    min-height: 100vh;
+    font-family: cursive;
+    position: relative;
 }

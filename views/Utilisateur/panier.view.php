@@ -3,10 +3,10 @@ $total = 0;
 $prix_article = 0;
 error_reporting(0);
 ?>
-<a id="retour" href="accueil">
-    retour à la boutique </a>
 
 
+
+<div style="padding-top: 50px;"></div>
 <?php foreach ($panier as $Panier) : ?>
 
 
@@ -38,7 +38,7 @@ error_reporting(0);
             <?php } ?>
             <div class="col-1">
                 <form method="POST" action="supprimerArticle">
-                    <button type="submit" class="btn btn-outline-warning" id="suppr" name="articleID" value="<?= $Panier['id']; ?>"> X </button>
+                    <button type="submit" class="btn" id="suppr" name="articleID" value="<?= $Panier['id']; ?>"> X </button>
                 </form>
 
             </div>
@@ -46,21 +46,24 @@ error_reporting(0);
 
 
         </div>
-    </div>
 
+    </div>
     <?php $total += $prix_article; ?>
 <?php endforeach;
 ?>
 
 
-
-
+<div style="padding-top: 50px;"></div>
 <div id="panier" class="mt-4">
 
     <!-- si le panier est vide -->
     <?php if (count($panier) == 0) { ?>
         <h2 class="text-center"> Votre Panier est vide</h2>
-
+        <div class="text-center pt-4" >
+            <form method="POST" action="accueil">
+                <button type="submit" id="accueil" class="btn"> Retour à l'accueil</button>
+            </form>
+        </div>
     <?php } else { ?>
         <div class="row mb-3">
             <div class="col-2"></div>
@@ -76,89 +79,14 @@ error_reporting(0);
         </div>
         <div class="text-center" id="btnCommande">
             <form method="POST" action="commande">
-                <button type="submit" class="btn btn-info " name="articleID" value="<?= $Panier['id']; ?>"> Passer la commande </button>
+                <button type="submit" id="commande" class="btn " name="articleID" value="<?= $Panier['id']; ?>"> Passer la commande </button>
             </form>
         </div>
     <?php } ?>
 
 </div>
 
-
+</div>
 </body>
 
 
-
-<style>
-    /* MEDIA REPSONSIIVE */
-    /* bureau */
-    @media screen and (min-width: 768px) {
-        #nbArticles {
-            font-size: 2em;
-        }
-
-        #total {
-            font-size: 2em;
-            text-align: right;
-        }
-
-        #panier {
-
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%
-        }
-
-        #suppr {
-            margin-top: 30px;
-            margin-left: 10px;
-        }
-
-        #btnCommande {
-            margin-top: 30px;
-        }
-    }
-
-    /* tablette */
-    @media screen and (min-width: 576px) and (max-width: 768px) {}
-
-    /* tel */
-    @media screen and (max-width: 576px) {
-        #suppr {
-            margin-top: 18px;
-            margin-left: 10px;
-        }
-
-        #panier {
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
-        #nbArticles {
-            font-weight: 700;
-        }
-
-        #total {
-            font-weight: 700;
-            text-align: right;
-        }
-    }
-
-    #retour {
-        text-decoration: none;
-        color: black;
-        text-transform: uppercase;
-    }
-
-    #ancienPrix {
-        text-decoration: line-through;
-    }
-
-    #nom {
-        font-weight: 700;
-    }
-
-    #prix {
-        font-weight: 700;
-
-    }
-</style>

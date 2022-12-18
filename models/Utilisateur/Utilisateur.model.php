@@ -142,7 +142,7 @@ class UtilisateurManager extends MainManager
     public function bdCreerCompte($nom, $prenom, $telephone, $mail, $passwordCrypte, $clef)
     {
         $req = "INSERT INTO utilisateur (nom, prenom, mail, telephone, password, est_valide, clef)
-        VALUES (:nom, :prenom, :mail, :telephone, :password,  0, :clef)";
+        VALUES (:nom, :prenom, :mail, :telephone, :password,  1, :clef)";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
         $stmt->bindValue(":prenom", $prenom, PDO::PARAM_STR);

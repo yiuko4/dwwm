@@ -1,4 +1,5 @@
 
+
 <!-- Propriétaire -->
 <div id="vendeur">
     <div class="row text-center pt-3 pb-3 align-bottom">

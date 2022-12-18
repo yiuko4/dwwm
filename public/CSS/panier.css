@@ -1,0 +1,91 @@
+
+/* MEDIA REPSONSIIVE */
+/* bureau */
+@media screen and (min-width: 768px) {
+    #nbArticles {
+        font-size: 2em;
+    }
+
+    #total {
+        font-size: 2em;
+        text-align: right;
+        color:#816c61;
+    }
+
+    #panier {
+
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%
+    }
+
+    #suppr {
+        margin-top: 30px;
+        margin-left: 10px;
+    }
+
+    #btnCommande {
+        margin-top: 30px;
+    }
+}
+
+/* tablette */
+@media screen and (min-width: 576px) and (max-width: 768px) {}
+
+/* tel */
+@media screen and (max-width: 576px) {
+    #suppr {
+        margin-top: 18px;
+        margin-left: 10px;
+    }
+
+    #panier {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #nbArticles {
+        font-weight: 700;
+    }
+
+    #total {
+        font-weight: 700;
+        text-align: right;
+        
+    }
+}
+
+#suppr {
+    background-color: #816c61 !important;
+    color: white;
+}
+
+#commande {
+    background-color: #2274A5 !important;
+    color: white;
+}
+
+#accueil {
+    background-color: #e7dfc6 !important;
+    color: #816c61;
+}
+
+#retour {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+
+#ancienPrix {
+    text-decoration: line-through;
+}
+
+#nom {
+    font-weight: 700;
+}
+
+#prix {
+    font-weight: 700;
+
+}
+

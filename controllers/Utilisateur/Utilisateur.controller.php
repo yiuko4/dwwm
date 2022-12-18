@@ -59,7 +59,7 @@ class UtilisateurController extends MainController
 
     public function livraison()
     {
-        $datas = $this->utilisateurManager->getLivraisonInformation($_SESSION['profil']['id']);
+        $datas = $this->utilisateurManager->getLivraisonInformation();
 
         $data_page = [
             "page_description" => "Page de livraison",
@@ -125,6 +125,7 @@ class UtilisateurController extends MainController
     }
 
     /* pas testé */
+    
     private function sendMailValidation($mail, $clef)
     {
         $urlVerification = URL . "validationMail" . $clef;
@@ -132,6 +133,7 @@ class UtilisateurController extends MainController
         $message = "Pour valider votre compte veuillez cliquer sur le lien suivant " . $urlVerification;
         Toolbox::sendMail($mail, $sujet, $message);
     }
+
     /* pas testé */
     public function renvoyerMailValidation($mail)
     {

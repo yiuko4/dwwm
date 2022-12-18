@@ -20,6 +20,8 @@
 
     </div>
 
+
+
     <div id="modificationPrenom" class="d-none mb-4">
         <form method="POST" action="<?= URL; ?>compte/validation_modificationPrenom">
             <div class="row mb-4">
@@ -40,7 +42,6 @@
                     <b> Nom</b>
                 </div>
             </div>
-
 
             <div class="row mb-2">
                 <div class="col-1"></div>

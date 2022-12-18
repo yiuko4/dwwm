@@ -1,5 +1,16 @@
-<a id="retour" href="accueil">
-    retour à la boutique </a>
+<!--<div>
+    <a id="retour" href="accueil">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
+            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z" />
+        </svg>
+    </a>
+</div>-->
+
+
+
+
+
 <div class="container">
     <div class="row">
         <div class="h-100 col" id="article">
@@ -18,7 +29,7 @@
                         <input type="hidden" class="form-control" value="<?= $Taille['id'] ?>" id="articleID" name="articleID">
                         <input type="hidden" class="form-control" value="<?= $Taille['nom'] ?>" id="articleNOM" name="articleNOM">
                         <input type="hidden" class="form-control" value="<?= $Taille['couleurID'] ?>" id="couleurID" name="couleurID">
-                        <button <?php if ($Taille['id'] == $article['id']) { ?> style="color:red" ; <?php } ?> id="boutontaille" type="submit"> <?= $Taille['taille'] ?> </button>
+                        <button <?php if ($Taille['id'] == $article['id']) { ?> style="color:#2274A5" ; <?php } ?> id="boutontaille" type="submit"> <?= $Taille['taille'] ?> </button>
                     </form>
                 <?php } ?>
             </h3>
@@ -30,7 +41,7 @@
                         <input type="hidden" class="form-control" value="<?= $Couleur['id'] ?>" id="articleID" name="articleID">
                         <input type="hidden" class="form-control" value="<?= $Couleur['nom'] ?>" id="articleNOM" name="articleNOM">
                         <input type="hidden" class="form-control" value="<?= $Couleur['couleurID'] ?>" id="couleurID" name="couleurID">
-                        <button <?php if ($Couleur['couleurID'] == $article['couleurID']) { ?> style="border:solid red; background-color: #<?= $Couleur['hexadecimal'] ?>" ; <?php } ?> id="boutoncouleur" type="submit" style="background-color: #<?= $Couleur['hexadecimal'] ?> ;"> &nbsp; </button>
+                        <button <?php if ($Couleur['couleurID'] == $article['couleurID']) { ?> style="border:solid #2274A5; background-color: #<?= $Couleur['hexadecimal'] ?>" ; <?php } ?> id="boutoncouleur" type="submit" style="background-color: #<?= $Couleur['hexadecimal'] ?> ;"> &nbsp; </button>
                     </form>
                 <?php } ?>
             </div>
@@ -38,164 +49,22 @@
             <div id="prix">
                 <div class="row" id="affichePrix">
                     <?php if ((int)$article['promotion'] != 0 &&  (int)$article['promotion'] < (int)$article['prix'] && (int)$article['prix'] > 0) { ?>
-                        <div class="col-1 line" id="ancienPrix" style="color: red; font-weight: 500;"><?= (int)$article['prix']; ?>€ </div>
-                        <div class="col-1" style="color: green; font-weight: 500;"><?= "&nbsp;&nbsp;" . (int)$article['promotion']; ?>€ </div>
+                        <div class="col-1 line" id="ancienPrix" style="color: #816C61; font-weight: 500;"><?= (int)$article['prix']; ?>€ </div>
+                        <div class="col-1" style="color: #2274A5; font-weight: 500;"><?= "&nbsp;&nbsp;" . (int)$article['promotion']; ?>€ </div>
                     <?php } else { ?>
-                        <div class="col-1" id="baseprix" style="color: green; font-weight: 500;"><?= (int)$article['prix']; ?>€ </div>
+                        <div class="col-1" id="baseprix" style="color: #2274A5; font-weight: 500;"><?= (int)$article['prix']; ?>€ </div>
                     <?php } ?>
 
                 </div>
 
             </div>
             <!-- nom -->
-            <h2 id="nom"><?= $article['nom']; ?></h2>
+            <h1 id="nom"><?= $article['nom']; ?></h1>
             <form method="POST" action="articlepanier/" id="btnPanier">
                 <input type="hidden" class="form-control" value="<?= $article['id'] ?>" id="articleID" name="articleID">
-                <button type="submit" class="btn btn-outline-warning"> Ajouter au Panier </button>
+                <button type="submit" id="button" class="btn"> Ajouter au Panier </button>
             </form>
 
         </div>
     </div>
 </div>
-
-
-<style>
-    /* MEDIA REPSONSIIVE */
-    /* bureau */
-    @media screen and (min-width: 768px) {
-        #nom {
-            text-align: left;
-
-        }
-
-        #btnPanier {
-            text-align: left;
-            margin-top: -50px;
-            margin-left: -70px;
-        }
-    }
-
-    /* tablette */
-    @media screen and (min-width: 576px) and (max-width: 768px) {}
-
-    /* tel */
-    @media screen and (max-width: 576px) {
-
-        #nom {
-            margin-top: -40px;
-        }
-
-        #btnPanier {
-            text-align: left;
-            margin-top: -50px;
-            margin-left: 25px;
-        }
-
-
-
-        #container {
-
-            text-align: center;
-        }
-
-        #formulaire {
-            margin-top: -25px;
-            margin-left: 50px;
-        }
-
-        #affichePrix {
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 2em;
-            width: 120px;
-        }
-
-        #ancienPrix {
-            text-decoration: line-through;
-            margin-left: -20px;
-            margin-right: 50px;
-
-        }
-
-        #baseprix {
-            margin-left: 20px;
-            margin-top: -10px;
-
-        }
-
-
-    }
-
-
-    #retour {
-        text-decoration: none;
-        color: black;
-        text-transform: uppercase;
-    }
-
-    #boutontaille {
-        border: none;
-        background-color: white;
-
-    }
-
-    #boutontaille:hover {
-        color: green;
-    }
-
-    #boutoncouleur {
-        display: inline-block;
-        border: solid thin grey;
-        margin: 2px;
-        font-size: 24px;
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-    }
-
-    #boutoncouleur:hover {
-        border: solid green;
-
-    }
-
-    #article {
-        margin: 5px;
-        padding-top: 15px;
-        padding-bottom: 5px;
-        height: 60px;
-    }
-
-
-    #ancienPrix {
-        text-decoration: line-through;
-
-    }
-
-    #image {
-        height: 400px;
-        display: block;
-        margin: 0px auto;
-    }
-
-    h2 {
-        padding-top: 50px;
-    }
-
-    .row {
-        padding-top: 20px;
-    }
-
-    .btn {
-        margin-top: 100px;
-        margin-left: 70px;
-    }
-
-    .taille {
-        text-decoration: none;
-    }
-
-    .couleur {
-        text-decoration: none;
-    }
-</style>
