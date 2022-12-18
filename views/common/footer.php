@@ -20,4 +20,35 @@
         width: 100%;
 
     }
+
+
+    /* MEDIA REPSONSIIVE */
+    /* bureau */
+    @media screen and (min-width: 768px) {
+        #sticky-footer {
+            display: block;
+        }
+
+
+
+    }
+
+    /* tablette */
+    @media screen and (min-width: 576px) and (max-width: 768px) {
+        #sticky-footer {
+            display: block;
+        }
+
+
+    }
+
+    /* tel */
+    @media screen and (max-width: 576px) {
+
+        #sticky-footer {
+            display: none;
+        }
+
+
+    }
 </style>

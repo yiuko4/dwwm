@@ -1,14 +1,22 @@
 <h2>voir les articles</h2>
-<form method="POST" action="formulaireAjoutArticle">
-    <button type="submit" class="btn"> Ajouter un article </button>
-</form>
 
-
-<div class="input-group">
-    <input class="form-control mr-sm-2" type="search" placeholder="Votre recherche.." aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-    <button class="btn btn-outline-danger  my-2 my-sm-0" type="submit">Annuler</button>
+<div class="row mb-5 text-center">
+    <div class="col-9">
+        <div class="input-group">
+            <input class="form-control mr-sm-2" type="search" placeholder="Votre recherche.." aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Rechercher</button>
+            <button class="btn btn-warning  my-2 my-sm-0" type="submit">Annuler</button>
+        </div>
+    </div>
+    <div class="col-3">
+        <form method="POST" action="formulaireAjoutArticle">
+            <button type="submit" class="btn btn-primary"> Ajouter un article </button>
+        </form>
+    </div>
 </div>
+
+
+
 
 <table class="table">
     <thead>

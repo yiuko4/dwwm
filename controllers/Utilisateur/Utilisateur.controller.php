@@ -11,12 +11,36 @@ class UtilisateurController extends MainController
         $this->utilisateurManager = new UtilisateurManager();
     }
 
-   
+    public function gestion()
+    {
+        $data_page = [
+            "page_description" => "Page de gestion compte",
+            "page_title" => "Page de  gestion compte",
+            "page_javascript" => ['profil.js'],
+            "view" => "views/Utilisateur/gestioncompte.view.php",
+            "template" => "views/common/template.php"
+        ];
+        $this->genererPage($data_page);
+    }
+
+
 
     public function validation_login($mail, $password)
     {
         if ($this->utilisateurManager->isCombinaisonValide($mail, $password)) {
-            if ($this->utilisateurManager->estCompteActive($mail)) {
+
+
+            $_SESSION['profil'] = [
+                "mail" => $mail,
+            ];
+            Securite::genererCookieConnexion();
+            echo $_SESSION['profil'][Securite::COOKIE_NAME];
+            echo "<br />";
+            echo $_COOKIE[Securite::COOKIE_NAME];
+            header("location: " . URL . "compte/profil");
+            Toolbox::ajouterMessageAlerte("Bon retour sur le site", Toolbox::COULEUR_VERTE);
+
+            /* if ($this->utilisateurManager->estCompteActive($mail)) {
                 Toolbox::ajouterMessageAlerte("Bon retour sur le site " . $mail . " !", Toolbox::COULEUR_VERTE);
                 $_SESSION['profil'] = [
                     "mail" => $mail,
@@ -32,7 +56,7 @@ class UtilisateurController extends MainController
                 $msg .= "<a href='renvoyerMailValidation/" . $mail . "'>Renvoyez le mail de validation</a>";
                 Toolbox::ajouterMessageAlerte($msg, Toolbox::COULEUR_ROUGE);
                 header("Location: " . URL . "login");
-            }
+            } */
         } else {
             Toolbox::ajouterMessageAlerte("Combinaison Mail / Mot de passe non valide", Toolbox::COULEUR_ROUGE);
             header("Location: " . URL . "login");
@@ -125,7 +149,7 @@ class UtilisateurController extends MainController
     }
 
     /* pas testé */
-    
+
     private function sendMailValidation($mail, $clef)
     {
         $urlVerification = URL . "validationMail" . $clef;

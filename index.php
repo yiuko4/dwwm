@@ -106,6 +106,7 @@ try {
         case "accueil":
             $visiteurController->accueil();
             break;
+
         case "login":
             $visiteurController->login();
             $_SESSION['filtre']["taille"] = 0;
@@ -149,6 +150,7 @@ try {
             #endregion
 
             #region UTILISATEUR
+
         case "compte":
             if (!Securite::estConnecte()) {
                 Toolbox::ajouterMessageAlerte("Veuillez vous connecter !", Toolbox::COULEUR_ROUGE);
@@ -161,8 +163,12 @@ try {
             } else {
                 Securite::genererCookieConnexion(); //regénération du cookie
                 switch ($url[1]) {
+
                     case "profil":
                         $utilisateurController->profil();
+                        break;
+                    case "gestion":
+                        $utilisateurController->gestion();
                         break;
                     case "livraison":
                         $utilisateurController->livraison();

@@ -3,6 +3,8 @@ require_once("./models/MainManager.model.php");
 
 class UtilisateurManager extends MainManager
 {
+
+
     private function getPasswordUser($mail)
     {
         $req = "SELECT password FROM utilisateur WHERE mail = :mail";

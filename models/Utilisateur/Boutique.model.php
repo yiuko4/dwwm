@@ -18,6 +18,7 @@ class BoutiqueManager extends MainManager
         FROM article
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
+        WHERE visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -44,7 +45,7 @@ class BoutiqueManager extends MainManager
         FROM article
         LEFT JOIN taille ON article.id_taille = taille.id  
         LEFT JOIN couleur ON article.id_couleur = couleur.id
-        WHERE article.id= :id;";
+        WHERE article.id= :id  AND visible = 1 ;";
 
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $articleID, PDO::PARAM_INT);
@@ -61,7 +62,7 @@ class BoutiqueManager extends MainManager
         FROM article
         LEFT JOIN couleur ON article.id_couleur = couleur.id
         LEFT JOIN taille ON article.id_taille = taille.id
-        WHERE article.nom= :nom AND couleur.id= :couleur
+        WHERE article.nom= :nom AND couleur.id= :couleur  AND visible = 1
         GROUP BY taille
         ORDER BY taille.id ASC;
         ";
@@ -83,7 +84,7 @@ class BoutiqueManager extends MainManager
         FROM article
         LEFT JOIN couleur ON article.id_couleur = couleur.id
         LEFT JOIN taille ON article.id_taille = taille.id
-        WHERE article.nom= :nom
+        WHERE article.nom= :nom  AND visible = 1
         GROUP BY couleurID
         ORDER BY couleur.id ASC;";
         $stmt = $this->getBdd()->prepare($req);
@@ -149,7 +150,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         INNER JOIN categorie ON article.id_categorie = categorie.id
-        WHERE taille.id = :taille
+        WHERE taille.id = :taille  AND visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -176,7 +177,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         INNER JOIN categorie ON article.id_categorie = categorie.id
-        WHERE categorie.id = :categorie
+        WHERE categorie.id = :categorie  AND visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -204,7 +205,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         INNER JOIN categorie ON article.id_categorie = categorie.id
-        WHERE couleur.id = :couleur
+        WHERE couleur.id = :couleur  AND visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -232,7 +233,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         INNER JOIN categorie ON article.id_categorie = categorie.id
-        WHERE couleur.id = :couleur AND taille.id = :taille
+        WHERE couleur.id = :couleur AND taille.id = :taille  AND visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -262,7 +263,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         INNER JOIN categorie ON article.id_categorie = categorie.id
-        WHERE categorie.id = :categorie AND taille.id = :taille
+        WHERE categorie.id = :categorie AND taille.id = :taille  AND visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -292,7 +293,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         INNER JOIN categorie ON article.id_categorie = categorie.id
-        WHERE categorie.id = :categorie AND couleur.id = :couleur
+        WHERE categorie.id = :categorie AND couleur.id = :couleur  AND visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -322,7 +323,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         INNER JOIN categorie ON article.id_categorie = categorie.id
-        WHERE couleur.id = :couleur AND taille.id = :taille AND categorie.id = :categorie
+        WHERE couleur.id = :couleur AND taille.id = :taille AND categorie.id = :categorie AND visible = 1
         GROUP BY image
         ORDER BY id ;
         ";
@@ -377,7 +378,7 @@ class BoutiqueManager extends MainManager
         INNER JOIN taille ON article.id_taille = taille.id  
         INNER JOIN couleur ON article.id_couleur = couleur.id
         LEFT JOIN panier_article ON article.id = panier_article.id_article
-        WHERE panier_article.id_panier = :panier
+        WHERE panier_article.id_panier = :panier  AND visible = 1
         ORDER BY article.id ASC;";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":panier", $panierID, PDO::PARAM_INT);
@@ -387,6 +388,15 @@ class BoutiqueManager extends MainManager
         $stmt->closeCursor();
         return $datas;
     }
+
+    /*
+    SELECT id_article FROM `panier_article` 
+INNER JOIN article ON article.id = panier_article.id_article
+WHERE article.visible = 0 AND id_panier = 17;
+
+
+DELETE FROM `panier_article` 
+WHERE id_article = 6 AND id_panier =17*/
 
     /* supprime un article du panier */
     public function supprimerArticle($articleID, $panierID)
@@ -400,7 +410,7 @@ class BoutiqueManager extends MainManager
         $stmt->bindValue(":article", $articleID, PDO::PARAM_INT);
 
         $stmt->execute();
-        $datas = ($stmt->rowCount() > 0); 
+        $datas = ($stmt->rowCount() > 0);
         $stmt->closeCursor();
         return $datas;
     }

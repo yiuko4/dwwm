@@ -1,5 +1,27 @@
 <div id="container">
-    <!-- LIVRAISON -->
+
+
+    <div class="row text-center">
+        <div class="col-6">
+            <form>
+                <label for="colissimo">Colissimo</label>
+                <input type="checkbox" class="form-check-input" id="colissimo" name="modeLivraison" value="1" onclick="if(this.checked){checkColissimo()}" <?= ($livraison['Cdefaut'] == 1) ? "checked disabled" : ""; ?>>
+            </form>
+        </div>
+
+        <div class="col-6">
+            <form>
+                <label for="mondial_relay">Mondial Relay</label>
+                <input type="checkbox" class="form-check-input" id="mondial_relay" name="modeLivraison" value="2" onclick="if(this.checked){CheckMondial_relay()}" <?= ($livraison['MRdefaut'] == 1) ? "checked disabled" : ""; ?>>
+
+            </form>
+        </div>
+        <div id="textColissimo" <?= ($livraison['Cdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php colissimo($livraison); ?></div>
+        <div id="textMondial_relay" <?= ($livraison['MRdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php mondial_relay($livraison); ?></div>
+    </div>
+
+</div>
+<!-- LIVRAISON 
     <div class="text-center ">
         <h2>Mode de livraison</h2>
     </div>
@@ -14,7 +36,7 @@
 
     <div id="textColissimo" <?= ($livraison['Cdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php colissimo($livraison); ?></div>
     <div id="textMondial_relay" <?= ($livraison['MRdefaut'] == 1) ? "style=\"display:block\"" : "style=\"display:none\""; ?>><?php mondial_relay($livraison); ?></div>
-</div>
+-->
 
 
 <style>
@@ -69,48 +91,50 @@ function colissimo($livraison)
 
         <form action="adresseColissimo" method="post">
 
-            <div class="form-group">
-                <label for="zipcode">Code Postal</label>
+
+
+
+            <div class="input-group mt-3">
+                <label for="zipcode" class="input-group-text">Code Postal</label>
                 <input type="text" name="zipcode" value="<?= $livraison['Ccode_postal'] ?>" class="form-control" id="zipcode">
                 <div style="display: none; color: #f55;" id="error-message"></div>
             </div>
 
-            <div class="form-group">
-                <label for="city">Ville</label>
+            <div class="input-group mt-3">
+                <label for="city" class="input-group-text">Ville</label>
                 <select class="form-control" value="<?= $livraison['Cville'] ?>" name="city" id="city">
                     <option value="<?= $livraison['Cville'] ?>"><?= $livraison['Cville'] ?></option>
 
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="adresse">Adresse</label>
+            <div class="input-group mt-3">
+                <label for="adresse" class="input-group-text">Adresse</label>
                 <input type="text" name="adresse" value="<?= $livraison['Cadresse'] ?>" class="form-control" id="adresse">
                 <div style="display: none; color: #f55;" id="error-message"></div>
             </div>
 
-            <div class="form-group">
-                <label for="lieu">Lieu-dit ou BP</label>
+            <div class="input-group mt-3">
+                <label for="lieu" class="input-group-text">Lieu-dit ou BP</label>
                 <input type="text" name="lieu" value="<?= $livraison['Clieu_dit'] ?>" class="form-control" id="lieu">
                 <div style="display: none; color: #f55;" id="error-message"></div>
             </div>
 
-            <div class="form-group">
-                <label for="batiment">Bâtiment, Immeuble</label>
+            <div class="input-group mt-3">
+                <label for="batiment" class="input-group-text">Bâtiment, Immeuble</label>
                 <input type="text" name="batiment" value="<?= $livraison['Cbatiment_immeuble'] ?>" class="form-control" id="batiment">
                 <div style="display: none; color: #f55;" id="error-message"></div>
             </div>
 
-            <div class="form-group">
-                <label for="appartement">Appartement, Etage</label>
+            <div class="input-group mt-3">
+                <label for="appartement" class="input-group-text">Appartement, Etage</label>
                 <input type="text" name="appartement" value="<?= $livraison['Cappartement_etage'] ?>" class="form-control" id="appartement">
                 <div style="display: none; color: #f55;" id="error-message"></div>
             </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary" id="btnEnvoyer">Envoyer</button>
-            </div>
-        </form>
 
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" id="btnEnvoyer">Valider</button>
+            </div>        
     </div>
 
 
@@ -125,7 +149,7 @@ function colissimo($livraison)
 function mondial_relay($livraison)
 { ?>
 
-    <div id="Zone_Widget"></div>
+    <div id="Zone_Widget" class="mt-3"></div>
 
     <div class="text-center">
         <form method="POST" action="adresseMondialRelay">

@@ -6,7 +6,6 @@ require 'vendor/autoload.php';
 
 header('Content-Type: application/json');
 
-//$YOUR_DOMAIN = 'http://localhost/ecole/diplome/PHP-POO-MVC/boutique/commande';
 
 
 $line_items = array();
@@ -50,8 +49,8 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => [[$line_items]],
     'mode' => 'payment',
 
-    'success_url' => 'http://localhost/ecole/diplome/PHP-POO-MVC/boutique/succesPaiement',
-    'cancel_url' => 'http://localhost/ecole/diplome/PHP-POO-MVC/boutique',
+    'success_url' => 'http://localhost/dwwm/boutique/succesPaiement',
+    'cancel_url' => 'http://localhost/dwwm/boutique/commande',
     'automatic_tax' => [
         'enabled' => true,
     ],
