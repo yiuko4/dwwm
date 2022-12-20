@@ -34,6 +34,7 @@ class AdministrateurController extends MainController
         header("Location: " . URL . "administration/articles");
     }
 
+
      public function validationModifArticle($articleID, $nom, $prix, $promotion, $idCategorie, $idCouleur, $idTaille)
     {
         if ($this->administrateurManager->infoModifArticle($articleID, $nom, $prix, $promotion, $idCategorie, $idCouleur, $idTaille)) {
@@ -43,11 +44,6 @@ class AdministrateurController extends MainController
         }
         header("Location: " . URL . "administration/articles");
     } 
-
-
-
-
-
 
 
     public function viewArticles()
@@ -64,6 +60,7 @@ class AdministrateurController extends MainController
         $this->genererPage($data_page);
     }
 
+
     public function modifArticle($articleID)
     {
         $modifArticle = $this->administrateurManager->modifArticle($articleID);
@@ -79,8 +76,6 @@ class AdministrateurController extends MainController
     }
 
 
-
-
     public function hideArticle($id)
     {
         if ($this->administrateurManager->unHideArticle($id)) {
@@ -94,6 +89,7 @@ class AdministrateurController extends MainController
         header("Location: " . URL . "administration/articles");
     }
 
+    
     public function deleteArticle($id)
     {
         if ($this->administrateurManager->deleteArticle($id)) {

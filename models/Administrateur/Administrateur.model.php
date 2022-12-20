@@ -33,20 +33,6 @@ class AdministrateurManager extends MainManager
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function viewArticles()
     {
         $req = "SELECT article.id as id, 
