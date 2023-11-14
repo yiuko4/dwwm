@@ -3,7 +3,7 @@ session_start();
 /*aeaeaeaz*/
 define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") .
     "://" . $_SERVER['HTTP_HOST'] . $_SERVER["PHP_SELF"]));
-
+/*zaeae*/
 require_once("./controllers/Toolbox.class.php");
 require_once("./controllers/Securite.class.php");
 require_once("./controllers/Visiteur/Visiteur.controller.php");
